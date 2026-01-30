@@ -152,45 +152,46 @@ export default function PostList({ posts, isLoading, onPostSelect, onPostDelete 
                   onClick={() => onPostSelect(post)}
                 >
                   <div className="absolute left-0 top-4 bottom-4 w-1 bg-slate-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="pl-3">
-                    <div className="flex-1 min-w-0 overflow-hidden">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {getSourceIcon(post)}
-                          <h4 className="font-semibold text-slate-800 truncate group-hover:text-slate-900 font-sans transition-colors">{post.title}</h4>
-                        </div>
-                        <Badge className={`${getStatusColor(post.status)} font-sans flex-shrink-0`}>{post.status}</Badge>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="p-1 h-7 w-7"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onPostSelect(post);
-                            }}
-                            title="Edit post"
-                          >
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                          {onPostDelete && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className={`p-1 h-7 w-7 text-red-500 hover:text-red-700 hover:bg-red-50 ${deletingId === post.id ? 'opacity-50' : ''}`}
-                              onClick={(e) => handleDeleteClick(e, post)}
-                              title="Delete post"
-                              disabled={deletingId === post.id}
-                            >
-                              {deletingId === post.id ? (
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                              ) : (
-                                <Trash2 className="w-3 h-3" />
-                              )}
-                            </Button>
+                  <div className="pl-3 flex items-start gap-2">
+                    <div className="flex items-center gap-2 min-w-0 flex-1">
+                      {getSourceIcon(post)}
+                      <h4 className="font-semibold text-slate-800 truncate group-hover:text-slate-900 font-sans transition-colors">{post.title}</h4>
+                    </div>
+                    <Badge className={`${getStatusColor(post.status)} font-sans flex-shrink-0`}>{post.status}</Badge>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="p-1 h-7 w-7"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onPostSelect(post);
+                        }}
+                        title="Edit post"
+                      >
+                        <Edit className="w-3 h-3" />
+                      </Button>
+                      {onPostDelete && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className={`p-1 h-7 w-7 text-red-500 hover:text-red-700 hover:bg-red-50 ${deletingId === post.id ? 'opacity-50' : ''}`}
+                          onClick={(e) => handleDeleteClick(e, post)}
+                          title="Delete post"
+                          disabled={deletingId === post.id}
+                        >
+                          {deletingId === post.id ? (
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                          ) : (
+                            <Trash2 className="w-3 h-3" />
                           )}
-                        </div>
-                      </div>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="pl-3 mt-2">
+                    <div className="min-w-0">
                       
                       {post.keywords && (
                         <div className="mb-2">
