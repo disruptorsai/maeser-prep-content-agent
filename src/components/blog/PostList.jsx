@@ -154,13 +154,13 @@ export default function PostList({ posts, isLoading, onPostSelect, onPostDelete 
                   <div className="absolute left-0 top-4 bottom-4 w-1 bg-slate-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="flex items-start justify-between pl-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
                           {getSourceIcon(post)}
-                          <h4 className="font-semibold text-slate-800 truncate pr-2 group-hover:text-slate-900 flex-1 font-sans transition-colors">{post.title}</h4>
+                          <h4 className="font-semibold text-slate-800 truncate group-hover:text-slate-900 font-sans transition-colors">{post.title}</h4>
                         </div>
+                        <Badge className={`${getStatusColor(post.status)} font-sans flex-shrink-0`}>{post.status}</Badge>
                         <div className="flex items-center gap-2 flex-shrink-0">
-                          <Badge className={`${getStatusColor(post.status)} font-sans`}>{post.status}</Badge>
                           <Button
                             variant="ghost"
                             size="sm"
