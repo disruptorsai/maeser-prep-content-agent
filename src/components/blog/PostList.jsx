@@ -192,7 +192,6 @@ export default function PostList({ posts, isLoading, onPostSelect, onPostDelete 
                   
                   <div className="pl-3 mt-2">
                     <div className="min-w-0">
-                      
                       {post.keywords && (
                         <div className="mb-2">
                           <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-md">
