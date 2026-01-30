@@ -60,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
       <SidebarProvider>
-        <style jsx global>{`
+        <style>{`
           :root {
             --primary: #1E3A5F;
             --primary-dark: #0F1F3D;
