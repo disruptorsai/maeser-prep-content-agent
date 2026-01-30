@@ -152,8 +152,8 @@ export default function PostList({ posts, isLoading, onPostSelect, onPostDelete 
                   onClick={() => onPostSelect(post)}
                 >
                   <div className="absolute left-0 top-4 bottom-4 w-1 bg-slate-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="flex items-start justify-between pl-3">
-                    <div className="flex-1 min-w-0">
+                  <div className="pl-3">
+                    <div className="flex-1 min-w-0 overflow-hidden">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="flex items-center gap-2 min-w-0 flex-1">
                           {getSourceIcon(post)}
