@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster"
+import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import NavigationTracker from '@/lib/NavigationTracker'
@@ -64,18 +65,41 @@ const AuthenticatedApp = () => {
 };
 
 
-function App() {
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-white p-8 text-center">
+          <h2 className="text-xl font-bold text-slate-800 mb-2">Something went wrong</h2>
+          <p className="text-slate-500 text-sm mb-4">{this.state.error?.message || 'An unexpected error occurred.'}</p>
+          <button onClick={() => window.location.reload()} className="px-4 py-2 bg-slate-800 text-white rounded-md text-sm">Reload page</button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
+function App() {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <NavigationTracker />
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <NavigationTracker />
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   )
 }
 

@@ -68,7 +68,7 @@ export const PAGES = {
 }
 
 export const pagesConfig = {
-    mainPage: "ContentCalendar",
+    mainPage: "index",
     Pages: PAGES,
     Layout: __Layout,
 };
