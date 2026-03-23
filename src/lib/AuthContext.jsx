@@ -23,14 +23,9 @@ export const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setIsAuthenticated(true);
     } catch (error) {
+      // Not logged in — just render the app unauthenticated
       setIsAuthenticated(false);
       setUser(null);
-      // If auth required, redirect to login
-      if (error?.status === 401 || error?.status === 403) {
-        base44.auth.redirectToLogin(window.location.href);
-        return;
-      }
-      setAuthError({ type: 'unknown', message: error?.message || 'Failed to load app' });
     } finally {
       setIsLoadingAuth(false);
     }
